@@ -30,7 +30,7 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
     @Override
     public void onBindViewHolder(@NonNull AccommodationViewHolder holder, int position) {
         Accommodation accommodation = accommodationList.get(position);
-        holder.txtTitle.setText(accommodation.getTitle());
+        holder.txtName.setText(accommodation.getTitle());
         holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
         holder.txtAddress.setText(accommodation.getAddress());
         holder.imgBackground.setImageResource(accommodation.getImageResource());
@@ -47,12 +47,12 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
     }
 
     public static class AccommodationViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitle, txtAvgStar, txtAddress;
+        TextView txtName, txtAvgStar, txtAddress;
         ImageView imgBackground, imageViewStar, imageViewLocation, imgLike;
 
         public AccommodationViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTitle = itemView.findViewById(R.id.txtTitle);
+            txtName = itemView.findViewById(R.id.txtName);
             txtAvgStar = itemView.findViewById(R.id.txtAvgStar);
             txtAddress = itemView.findViewById(R.id.txtAddress);
             imgBackground = itemView.findViewById(R.id.imgBackground);

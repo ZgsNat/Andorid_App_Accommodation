@@ -39,11 +39,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtTitle"
+                android:id="@+id/txtName"
                 android:layout_width="178dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Title"
+                android:text="Name"
                 android:textStyle="bold" />
 
             <ImageView

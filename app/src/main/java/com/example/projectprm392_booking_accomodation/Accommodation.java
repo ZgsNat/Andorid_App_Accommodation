@@ -2,14 +2,14 @@ package com.example.projectprm392_booking_accomodation;
 
 
 public class Accommodation {
-    private String title;
+    private String name;
     private double avgStar;
     private String address;
     private int imageResource;
     private boolean isFavorite; // New attribute
 
-    public Accommodation(String title, double avgStar, String address, int imageResource, boolean isFavorite) {
-        this.title = title;
+    public Accommodation(String name, double avgStar, String address, int imageResource, boolean isFavorite) {
+        this.name = name;
         this.avgStar = avgStar;
         this.address = address;
         this.imageResource = imageResource;
@@ -17,7 +17,7 @@ public class Accommodation {
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public double getAvgStar() {

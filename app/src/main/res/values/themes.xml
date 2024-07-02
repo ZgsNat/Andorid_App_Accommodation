@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.ProjectPrm392_booking_Accomodation" parent="Base.Theme.ProjectPrm392_booking_Accomodation" />
+    <style name="Theme.ProjectPrm392_booking_Accomodation.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.ProjectPrm392_booking_Accomodation.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.ProjectPrm392_booking_Accomodation.PopupOverlay"
+        parent="ThemeOverlay.AppCompat.Light" />
 </resources>
