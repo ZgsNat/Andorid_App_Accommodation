@@ -33,7 +33,7 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
         holder.txtName.setText(accommodation.getTitle());
         holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
         holder.txtAddress.setText(accommodation.getAddress());
-        holder.imgBackground.setImageResource(accommodation.getImageResource());
+        holder.imgBackground.setImageResource(accommodation.getImage());
         if (accommodation.isFavorite()) {
             holder.imgLike.setImageResource(R.drawable.baseline_thumb_up); // like thump
         } else {

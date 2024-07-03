@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation ("com.squareup.retrofit2:retrofit:2.0.2")
+    implementation ("com.squareup.retrofit2:converter-gson:2.0.2")
     implementation ("com.google.android.material:material:1.3.0-alpha03")
     implementation ("com.google.android.material:material:1.9.0")
     implementation(libs.appcompat)

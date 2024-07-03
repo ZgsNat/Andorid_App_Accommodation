@@ -29,12 +29,12 @@ public class Main_Accommodations_App extends AppCompatActivity {
     }
 
     private void createData(){
-        accommodationList.add(new Accommodation("Title 1", 4.5, "Address 1", R.drawable.roblox,true));
-        accommodationList.add(new Accommodation("Title 2", 4.0, "Address 2", R.drawable.roblox,true));
-        accommodationList.add(new Accommodation("Title 3", 5.0, "Address 3", R.drawable.roblox,true));
-        accommodationList.add(new Accommodation("Title 4", 3.5, "Address 4", R.drawable.roblox,true));
-        accommodationList.add(new Accommodation("Title 5", 4.2, "Address 5", R.drawable.roblox,true));
-        accommodationList.add(new Accommodation("Title 6", 3.8, "Address 6", R.drawable.roblox,true));
+        accommodationList.add(new Accommodation("Name 1", 4.5, "Address 1", R.drawable.roblox,true));
+        accommodationList.add(new Accommodation("Name 2", 4.0, "Address 2", R.drawable.roblox,true));
+        accommodationList.add(new Accommodation("Name 3", 5.0, "Address 3", R.drawable.roblox,true));
+        accommodationList.add(new Accommodation("Name 4", 3.5, "Address 4", R.drawable.roblox,true));
+        accommodationList.add(new Accommodation("Name 5", 4.2, "Address 5", R.drawable.roblox,true));
+        accommodationList.add(new Accommodation("Name 6", 3.8, "Address 6", R.drawable.roblox,true));
 
     }
     @Override
