@@ -1,4 +1,4 @@
-package com.example.projectprm392_booking_accomodation;
+package com.example.projectprm392_booking_accomodation.Adapter;
 
 
 import android.content.Context;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectprm392_booking_accomodation.Model.Accommodation;
+import com.example.projectprm392_booking_accomodation.R;
 
 import java.util.List;
 
