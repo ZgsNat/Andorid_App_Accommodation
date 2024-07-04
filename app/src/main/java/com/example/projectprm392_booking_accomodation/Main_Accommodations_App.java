@@ -1,7 +1,6 @@
 package com.example.projectprm392_booking_accomodation;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -11,6 +10,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.projectprm392_booking_accomodation.Adapter.AccommodationAdapter;
+import com.example.projectprm392_booking_accomodation.Model.Accommodation;
 
 import java.util.ArrayList;
 import java.util.List;

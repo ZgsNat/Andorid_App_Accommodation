@@ -1,4 +1,4 @@
-package com.example.projectprm392_booking_accomodation;
+package com.example.projectprm392_booking_accomodation.Model;
 
 public class Room {
     private int roomId;

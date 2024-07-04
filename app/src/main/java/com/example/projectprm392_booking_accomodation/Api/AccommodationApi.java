@@ -1,4 +1,6 @@
-package com.example.projectprm392_booking_accomodation;
+package com.example.projectprm392_booking_accomodation.Api;
+
+import com.example.projectprm392_booking_accomodation.Model.Accommodation;
 
 import java.util.List;
 

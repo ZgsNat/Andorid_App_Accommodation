@@ -11,10 +11,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.projectprm392_booking_accomodation.Adapter.RoomAdapter;
+import com.example.projectprm392_booking_accomodation.Model.Accommodation;
+import com.example.projectprm392_booking_accomodation.Model.Room;
 
 import java.util.List;
 

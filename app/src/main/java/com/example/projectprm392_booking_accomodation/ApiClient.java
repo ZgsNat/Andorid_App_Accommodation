@@ -1,5 +1,8 @@
 package com.example.projectprm392_booking_accomodation;
 
+import com.example.projectprm392_booking_accomodation.Api.AccommodationApi;
+import com.example.projectprm392_booking_accomodation.Api.RoomApi;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
