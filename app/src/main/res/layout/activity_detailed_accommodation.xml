@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".DetailedAccommodation">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragImg"
+        android:name="com.example.projectprm392_booking_accomodation.Fragments.ImageFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
