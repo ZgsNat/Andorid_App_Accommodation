@@ -2,13 +2,20 @@ package com.example.projectprm392_booking_accomodation;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdapter.AccommodationViewHolder> {
@@ -33,12 +40,22 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
         holder.txtName.setText(accommodation.getTitle());
         holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
         holder.txtAddress.setText(accommodation.getAddress());
-        holder.imgBackground.setImageResource(accommodation.getImage());
+        Glide.with(context)
+                .load(accommodation.getImage())
+                .placeholder(R.drawable.baseline_cloud_download) // Ảnh chờ trong khi tải
+                .error(R.drawable.baseline_running_with_errors) // Ảnh lỗi nếu không tải được
+                .into(holder.imgBackground);
+
         if (accommodation.isFavorite()) {
             holder.imgLike.setImageResource(R.drawable.baseline_thumb_up); // like thump
         } else {
             holder.imgLike.setImageResource(R.drawable.baseline_thumb_up_off_alt); // Outline heart
         }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailedAccommodation.class);
+            intent.putExtra("AccommodationId", accommodation.getAccommodationId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

@@ -2,34 +2,34 @@ package com.example.projectprm392_booking_accomodation;
 
 
 public class Accommodation {
-    private int accomodationId;
+    private int accommodationId;
     private String name;
     private double averageStar;
     private String address;
     private String hostName;
-    private int image;
-    private boolean isFavorite; // New attribute
+    private String image; // Đổi kiểu dữ liệu từ int sang String
+    private boolean isFavorite;
     private float longitude;
     private float latitude;
 
-    public Accommodation(String name, double avgStar, String address, int imageResource, boolean isFavorite) {
+    public Accommodation(String name, double avgStar, String address, String imageUrl, boolean isFavorite) {
         this.name = name;
         this.averageStar = avgStar;
         this.address = address;
-        this.image = imageResource;
+        this.image = imageUrl; // Đổi kiểu dữ liệu từ int sang String
         this.isFavorite = isFavorite;
     }
 
-    public Accommodation(float latitude, float longitude, boolean isFavorite, int image, String hostName, String address, double averageStar, String name, int accomodationId) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.isFavorite = isFavorite;
-        this.image = image;
-        this.hostName = hostName;
-        this.address = address;
-        this.averageStar = averageStar;
+    public Accommodation(int accommodationId, String name, double averageStar, String address, String hostName, String image, boolean isFavorite, float longitude, float latitude) {
+        this.accommodationId = accommodationId;
         this.name = name;
-        this.accomodationId = accomodationId;
+        this.averageStar = averageStar;
+        this.address = address;
+        this.hostName = hostName;
+        this.image = image;
+        this.isFavorite = isFavorite;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public float getLatitude() {
@@ -48,12 +48,12 @@ public class Accommodation {
         this.longitude = longitude;
     }
 
-    public int getAccomodationId() {
-        return accomodationId;
+    public int getAccommodationId() {
+        return accommodationId;
     }
 
-    public void setAccomodationId(int accomodationId) {
-        this.accomodationId = accomodationId;
+    public void setAccommodationId(int accommodationId) {
+        this.accommodationId = accommodationId;
     }
 
     public String getName() {
@@ -84,11 +84,11 @@ public class Accommodation {
         this.hostName = hostName;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

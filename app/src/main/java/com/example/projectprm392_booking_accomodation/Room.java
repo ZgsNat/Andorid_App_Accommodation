@@ -2,7 +2,7 @@ package com.example.projectprm392_booking_accomodation;
 
 public class Room {
     private int roomId;
-    private int accomodationId;
+    private int accommodationId;
     private String roomName;
     private int status;
     private int capacity;
@@ -12,9 +12,9 @@ public class Room {
     public Room() {
     }
 
-    public Room(int roomId, int accomodationId, String roomName, int status, int capacity, double price, String description) {
+    public Room(int roomId, int accommodationId, String roomName, int status, int capacity, double price, String description) {
         this.roomId = roomId;
-        this.accomodationId = accomodationId;
+        this.accommodationId = accommodationId;
         this.roomName = roomName;
         this.status = status;
         this.capacity = capacity;
@@ -30,12 +30,12 @@ public class Room {
         this.roomId = roomId;
     }
 
-    public int getAccomodationId() {
-        return accomodationId;
+    public int getAccommodationId() {
+        return accommodationId;
     }
 
-    public void setAccomodationId(int accomodationId) {
-        this.accomodationId = accomodationId;
+    public void setAccommodationId(int accomodationId) {
+        this.accommodationId = accomodationId;
     }
 
     public String getRoomName() {
