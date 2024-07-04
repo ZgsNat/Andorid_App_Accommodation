@@ -1,16 +1,18 @@
-package com.example.projectprm392_booking_accomodation;
+package com.example.projectprm392_booking_accomodation.Api;
+
+import com.example.projectprm392_booking_accomodation.DTOs.LoginDTO;
+import com.example.projectprm392_booking_accomodation.DTOs.RegisterDTO;
+import com.example.projectprm392_booking_accomodation.Model.User;
 
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface IUserApiEndpoint {
     @GET("Users")

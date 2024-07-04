@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.projectprm392_booking_accomodation.DTOs.RegisterDTO;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,7 +77,7 @@ public class Signup extends AppCompatActivity {
         dto.setName(fullName);
         dto.setPhone(phoneNumber);
 
-        ApiServices.getUserApiEnpoint()
+        ApiClient.getUserApiEnpoint()
                 .registerUser(dto)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override

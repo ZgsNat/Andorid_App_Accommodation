@@ -1,4 +1,4 @@
-package com.example.projectprm392_booking_accomodation;
+package com.example.projectprm392_booking_accomodation.DTOs;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,9 +1,12 @@
-package com.example.projectprm392_booking_accomodation;
+package com.example.projectprm392_booking_accomodation.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterDTO {
+public class User {
+    @SerializedName("userId")
+    @Expose
+    private Integer userId;
     @SerializedName("userName")
     @Expose
     private String userName;
@@ -22,6 +25,14 @@ public class RegisterDTO {
     @SerializedName("phone")
     @Expose
     private String phone;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
@@ -70,4 +81,6 @@ public class RegisterDTO {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
 }
