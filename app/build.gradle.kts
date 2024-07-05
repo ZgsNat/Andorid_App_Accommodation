@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation(libs.gms.play.services.maps)
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("com.squareup.retrofit2:retrofit:2.0.2")
     implementation ("com.squareup.retrofit2:converter-gson:2.0.2")
