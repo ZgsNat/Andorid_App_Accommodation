@@ -39,7 +39,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Main_Accommodations_App"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Main_Accommodations_App"
+            android:name=".MainActivity"
             android:exported="false" />
     </application>
 
