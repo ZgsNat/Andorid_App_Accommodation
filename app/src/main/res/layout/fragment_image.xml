@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AB000000"
     tools:context=".Fragments.ImageFragment">
     <!-- Nút đóng Fragment -->
     <ImageButton
@@ -34,9 +35,9 @@
         android:layout_gravity="center_vertical|start"
         android:layout_margin="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/baseline_arrow_back"
         android:contentDescription="Previous"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:src="@drawable/baseline_arrow_back" />
 
     <!-- Nút điều hướng phải -->
     <ImageButton
@@ -46,8 +47,8 @@
         android:layout_gravity="center_vertical|end"
         android:layout_margin="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/baseline_arrow_forward"
         android:contentDescription="Next"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:src="@drawable/baseline_arrow_forward" />
 
 </FrameLayout>

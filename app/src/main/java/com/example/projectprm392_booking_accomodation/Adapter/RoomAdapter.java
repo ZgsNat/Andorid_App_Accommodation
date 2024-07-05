@@ -8,8 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projectprm392_booking_accomodation.Fragments.ImageFragment;
 import com.example.projectprm392_booking_accomodation.Model.Room;
 import com.example.projectprm392_booking_accomodation.R;
 
@@ -49,6 +51,15 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             holder.txtStatus.setText("Hết phòng");
             holder.txtStatus.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark));
         }
+        // Khi click vào item
+        holder.itemView.setOnClickListener(v -> {
+            ImageFragment imageFragment = ImageFragment.newInstance(room.getRoomId());
+            ((FragmentActivity) context).getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragImg, imageFragment)// Cho phép người dùng quay lại
+                    .commit();
+            // Hiển thị container
+            ((FragmentActivity) context).findViewById(R.id.fragImg).setVisibility(View.VISIBLE);
+        });
     }
     @Override
     public int getItemCount() {
