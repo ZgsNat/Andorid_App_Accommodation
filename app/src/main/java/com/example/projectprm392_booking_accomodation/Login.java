@@ -1,6 +1,7 @@
 package com.example.projectprm392_booking_accomodation;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projectprm392_booking_accomodation.DTOs.LoginDTO;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,12 +33,16 @@ public class Login extends AppCompatActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private Button btnLoginToRegister;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     private void bindingView() {
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnLoginToRegister = findViewById(R.id.btnLoginToRegister);
+        pref = getSharedPreferences("user_info", MODE_PRIVATE);
+        editor = pref.edit();
     }
 
     private void bindingAction() {
@@ -59,6 +69,23 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
+
+                            // get User info from api
+                            try {
+                                String responseBody = response.body().string();
+                                JSONObject jsonObject = new JSONObject(responseBody);
+                                String userId = jsonObject.getString("userId");
+                                String username = jsonObject.getString("username");
+                                String email = jsonObject.getString("email");
+
+                                editor.putString("userId", userId);
+                                editor.putString("username", username);
+                                editor.putString("email", email);
+                                editor.apply();
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(Login.this, "Failed to parse user information", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(Login.this, "CODE: " + response.code(), Toast.LENGTH_SHORT).show();
                             switch (response.code()) {
