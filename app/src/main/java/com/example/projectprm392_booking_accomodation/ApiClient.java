@@ -1,6 +1,7 @@
 package com.example.projectprm392_booking_accomodation;
 
 import com.example.projectprm392_booking_accomodation.Api.AccommodationApi;
+import com.example.projectprm392_booking_accomodation.Api.CommentApi;
 import com.example.projectprm392_booking_accomodation.Api.RoomApi;
 
 import com.example.projectprm392_booking_accomodation.Api.IUserApiEndpoint;
@@ -9,9 +10,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    public static final String Base_Url = "https://daf1-171-241-121-155.ngrok-free.app/";
+    public static final String Base_Url = "https://bb8d-171-241-121-155.ngrok-free.app/";
     private AccommodationApi AccommodationApiEnpoint;
     private RoomApi roomApiEnpoint;
+    private CommentApi commentApiEnpoint;
     private IUserApiEndpoint userApiEndpoint;
     private static ApiClient instance;
 
@@ -30,6 +32,7 @@ public class ApiClient {
         userApiEndpoint = retrofit.create(IUserApiEndpoint.class);
             AccommodationApiEnpoint = retrofit.create(AccommodationApi.class);
             roomApiEnpoint = retrofit.create(RoomApi.class);
+        commentApiEnpoint = retrofit.create(CommentApi.class);
     }
 
     public static AccommodationApi getAccommodationApiEnpoint() {
@@ -39,6 +42,7 @@ public class ApiClient {
     public static RoomApi getRoomApiEnpoint() {
         return getInstance().roomApiEnpoint;
     }
+    public static CommentApi getCommentApiEnpoint() {return getInstance().commentApiEnpoint;}
 
     public static IUserApiEndpoint getUserApiEnpoint() {
         return getInstance().userApiEndpoint;

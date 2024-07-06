@@ -47,7 +47,9 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
     public void onBindViewHolder(@NonNull AccommodationViewHolder holder, int position) {
         Accommodation accommodation = accommodationList.get(position);
         holder.txtName.setText(accommodation.getTitle());
-        holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
+        String formattedAverageStar = String.format("%.1f", accommodation.getAverageStar());
+        holder.txtAvgStar.setText(formattedAverageStar);
+        //holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
         holder.txtAddress.setText(accommodation.getAddress());
         Glide.with(context)
                 .load(accommodation.getImage())

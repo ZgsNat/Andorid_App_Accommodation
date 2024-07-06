@@ -27,33 +27,19 @@ public class Main_Accommodations_App extends AppCompatActivity {
     private RecyclerView recAccommodation;
     private AccommodationAdapter adapter1;
     private AccommodationAdapter adapter2;
-    private List<Accommodation> accommodationList;
-
 
 
     private void bindingView(){
         recLoveAccommodation = findViewById(R.id.recLoveAccommodation);
         recAccommodation = findViewById(R.id.recAccommodation);
         recLoveAccommodation.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        accommodationList = new ArrayList<>();
     }
 
     private void bindingAction(){
-/*        adapter = new AccommodationAdapter(this, accommodationList);
-        recLoveAccommodation.setAdapter(adapter);*/
         getListAccommodation();
         getListFavorAccommodation();
     }
 
-    private void createData(){
-        accommodationList.add(new Accommodation("Name 1", 4.5, "Address 1", "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQtF2ehsVwvBxV5aSgI6IERauqM7kLkXO6XQODmcm6U4YzwuAvM31OwfKw_RgIV6FLc5tIsc7l-tLuJ_jmm97s",true));
-        accommodationList.add(new Accommodation("Name 2", 4.0, "Address 2", "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQtF2ehsVwvBxV5aSgI6IERauqM7kLkXO6XQODmcm6U4YzwuAvM31OwfKw_RgIV6FLc5tIsc7l-tLuJ_jmm97s",true));
-        accommodationList.add(new Accommodation("Name 3", 5.0, "Address 3", "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQtF2ehsVwvBxV5aSgI6IERauqM7kLkXO6XQODmcm6U4YzwuAvM31OwfKw_RgIV6FLc5tIsc7l-tLuJ_jmm97s",true));
-        accommodationList.add(new Accommodation("Name 4", 3.5, "Address 4", "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQtF2ehsVwvBxV5aSgI6IERauqM7kLkXO6XQODmcm6U4YzwuAvM31OwfKw_RgIV6FLc5tIsc7l-tLuJ_jmm97s",true));
-        accommodationList.add(new Accommodation("Name 5", 4.2, "Address 5", "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQtF2ehsVwvBxV5aSgI6IERauqM7kLkXO6XQODmcm6U4YzwuAvM31OwfKw_RgIV6FLc5tIsc7l-tLuJ_jmm97s",true));
-        accommodationList.add(new Accommodation("Name 6", 3.8, "Address 6", "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQtF2ehsVwvBxV5aSgI6IERauqM7kLkXO6XQODmcm6U4YzwuAvM31OwfKw_RgIV6FLc5tIsc7l-tLuJ_jmm97s",true));
-
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +51,6 @@ public class Main_Accommodations_App extends AppCompatActivity {
             return insets;
         });
         bindingView();
-        //createData();
         bindingAction();
     }
 
@@ -168,5 +153,12 @@ public class Main_Accommodations_App extends AppCompatActivity {
                 Toast.makeText(Main_Accommodations_App.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getListFavorAccommodation();
+        getListAccommodation();
     }
 }
