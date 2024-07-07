@@ -69,7 +69,8 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
-
+                            Intent intent = new Intent(Login.this,Main_Accommodations_App.class);
+                            Login.this.startActivity(intent);
                             // get User info from api
                             try {
                                 String responseBody = response.body().string();

@@ -43,6 +43,7 @@ public class DetailedAccommodation extends AppCompatActivity {
     private EditText editTextComment;
     private RatingBar ratingBarComment;
     private Button buttonSubmitComment;
+
     private void bindingView(){
         recRoom = findViewById(R.id.recListRoom);
         recComment = findViewById(R.id.recListComment);
@@ -76,7 +77,7 @@ public class DetailedAccommodation extends AppCompatActivity {
         comment.setDescription(commentText);
         comment.setStar((int) stars);
         comment.setAccommodationId(accommodationId);
-
+        comment.setUserId(1); //UserId
         Call<Void> call = ApiClient.getCommentApiEnpoint().addComment(comment);
         call.enqueue(new Callback<Void>() {
             @Override

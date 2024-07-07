@@ -1,5 +1,6 @@
 package com.example.projectprm392_booking_accomodation;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -27,9 +28,12 @@ public class Main_Accommodations_App extends AppCompatActivity {
     private RecyclerView recAccommodation;
     private AccommodationAdapter adapter1;
     private AccommodationAdapter adapter2;
-
+    private SharedPreferences pref;
+    private int userId;
 
     private void bindingView(){
+        pref = getSharedPreferences("user_info", MODE_PRIVATE);
+        userId = Integer.parseInt(pref.getString("userId","0"));
         recLoveAccommodation = findViewById(R.id.recLoveAccommodation);
         recAccommodation = findViewById(R.id.recAccommodation);
         recLoveAccommodation.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -85,7 +89,7 @@ public class Main_Accommodations_App extends AppCompatActivity {
     }
     private void getListFavorAccommodation(){
         recLoveAccommodation.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        Call<List<Accommodation>> call = ApiClient.getAccommodationApiEnpoint().getListFavorAccommodation(1); //UserId
+        Call<List<Accommodation>> call = ApiClient.getAccommodationApiEnpoint().getListFavorAccommodation(userId); //UserId
         call.enqueue(new Callback<List<Accommodation>>() {
             @Override
             public void onResponse(Call<List<Accommodation>> call, Response<List<Accommodation>> response) {
@@ -112,7 +116,7 @@ public class Main_Accommodations_App extends AppCompatActivity {
     }
     private void addToFavorites(Accommodation accommodation) {
         Call<Void> call = ApiClient.getAccommodationApiEnpoint().saveFavoriteAccommodation(
-                new FavoriteAccommodationRequest(1, accommodation.getAccommodationId())
+                new FavoriteAccommodationRequest(userId, accommodation.getAccommodationId())
         );
         call.enqueue(new Callback<Void>() {
             @Override
@@ -134,7 +138,7 @@ public class Main_Accommodations_App extends AppCompatActivity {
     }
     private void removeFromFavorites(Accommodation accommodation) {
         Call<Void> call = ApiClient.getAccommodationApiEnpoint().removeFavoriteAccommodation(
-                new FavoriteAccommodationRequest(1, accommodation.getAccommodationId())
+                new FavoriteAccommodationRequest(userId, accommodation.getAccommodationId())
         );
         call.enqueue(new Callback<Void>() {
             @Override
