@@ -14,6 +14,22 @@ public class Comment {
         this.accommodationId = accommodationId;
     }
 
+    public Comment(int commentId, String description, int star, int accommodationId, int userId) {
+        this.commentId = commentId;
+        this.description = description;
+        this.star = star;
+        this.accommodationId = accommodationId;
+        this.userId = userId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public Comment() {
     }
 
