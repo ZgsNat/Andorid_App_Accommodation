@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">ProjectPrm392_booking_Accomodation</string>
+    <string name="app_name">HÒA LẠC STAY</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
     <string name="title_activity_detailed_accommodation_scoll">DetailedAccommodationScoll</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
