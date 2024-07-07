@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.projectprm392_booking_accomodation.DetailedAccommodation;
+import com.example.projectprm392_booking_accomodation.Interface.OnFavoriteClickListener;
 import com.example.projectprm392_booking_accomodation.Model.Accommodation;
 import com.example.projectprm392_booking_accomodation.R;
 
@@ -22,10 +23,17 @@ import java.util.List;
 public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdapter.AccommodationViewHolder> {
     private List<Accommodation> accommodationList;
     private Context context;
+    private OnFavoriteClickListener onFavoriteClickListener;
 
     public AccommodationAdapter(Context context, List<Accommodation> accommodationList) {
         this.context = context;
         this.accommodationList = accommodationList;
+    }
+
+    public AccommodationAdapter(Context context, List<Accommodation> accommodationList, OnFavoriteClickListener listener) {
+        this.context = context;
+        this.accommodationList = accommodationList;
+        this.onFavoriteClickListener = listener;
     }
 
     @NonNull
@@ -39,7 +47,9 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
     public void onBindViewHolder(@NonNull AccommodationViewHolder holder, int position) {
         Accommodation accommodation = accommodationList.get(position);
         holder.txtName.setText(accommodation.getTitle());
-        holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
+        String formattedAverageStar = String.format("%.1f", accommodation.getAverageStar());
+        holder.txtAvgStar.setText(formattedAverageStar);
+        //holder.txtAvgStar.setText(String.valueOf(accommodation.getAvgStar()));
         holder.txtAddress.setText(accommodation.getAddress());
         Glide.with(context)
                 .load(accommodation.getImage())
@@ -56,6 +66,10 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
             Intent intent = new Intent(context, DetailedAccommodation.class);
             intent.putExtra("AccommodationId", accommodation.getAccommodationId());
             context.startActivity(intent);
+        });
+        holder.imgLike.setOnClickListener(v -> {
+            boolean isFavorite = !accommodation.isFavorite(); // Toggle favorite status
+            onFavoriteClickListener.onFavoriteClick(accommodation, isFavorite);
         });
     }
 
