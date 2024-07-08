@@ -73,6 +73,11 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
         });
     }
 
+    public void updateData(List<Accommodation> newAccommodationList) {
+        this.accommodationList.clear();
+        this.accommodationList.addAll(newAccommodationList);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return accommodationList.size();

@@ -2,6 +2,9 @@ package com.example.projectprm392_booking_accomodation;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,17 +34,30 @@ public class Main_Accommodations_App extends AppCompatActivity {
     private SharedPreferences pref;
     private int userId;
 
+    //Search
+    private AutoCompleteTextView edtAccommodationName;
+    private List<String> ListAccommodationName = new ArrayList<>();
+    private List<Accommodation> allAccommodations = new ArrayList<>();
+    private ArrayAdapter<String> searchAdapter;
+
+    //
     private void bindingView(){
         pref = getSharedPreferences("user_info", MODE_PRIVATE);
         userId = Integer.parseInt(pref.getString("userId","0"));
+
         recLoveAccommodation = findViewById(R.id.recLoveAccommodation);
         recAccommodation = findViewById(R.id.recAccommodation);
         recLoveAccommodation.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        edtAccommodationName = findViewById(R.id.txtSearch);
+        searchAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, ListAccommodationName);
+        edtAccommodationName.setAdapter(searchAdapter);
     }
 
     private void bindingAction(){
         getListAccommodation();
         getListFavorAccommodation();
+        setupSearchFilter();
     }
 
     @Override
@@ -77,6 +93,7 @@ public class Main_Accommodations_App extends AppCompatActivity {
                             removeFromFavorites(accommodation);
                         }
                     });
+                    allAccommodations = accommodationList;
                     recAccommodation.setAdapter(adapter1);
 
                 }
@@ -157,6 +174,37 @@ public class Main_Accommodations_App extends AppCompatActivity {
                 Toast.makeText(Main_Accommodations_App.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }private void setupSearchFilter() {
+        edtAccommodationName.setThreshold(1); // Bắt đầu gợi ý sau 1 ký tự
+        edtAccommodationName.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedAccommodation = (String) parent.getItemAtPosition(position);
+            // Lọc danh sách chỗ ở và cập nhật RecyclerView
+            filterAccommodations(selectedAccommodation);
+        });
+        edtAccommodationName.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterAccommodations(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {
+            }
+        });
+    }
+
+    private void filterAccommodations(String query) {
+        List<Accommodation> filteredList = new ArrayList<>();
+        for (Accommodation accommodation : allAccommodations) {
+            if (accommodation.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(accommodation);
+            }
+        }
+        adapter1.updateData(filteredList); // Cập nhật adapter với danh sách đã lọc
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.projectprm392_booking_accomodation.Model;
 
+import java.util.List;
+
 public class Room {
     private int roomId;
     private int accommodationId;
