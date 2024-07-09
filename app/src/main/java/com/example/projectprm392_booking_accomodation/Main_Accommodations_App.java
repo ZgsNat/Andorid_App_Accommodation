@@ -1,5 +1,6 @@
 package com.example.projectprm392_booking_accomodation;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -8,16 +9,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectprm392_booking_accomodation.Adapter.AccommodationAdapter;
 import com.example.projectprm392_booking_accomodation.Model.Accommodation;
 import com.example.projectprm392_booking_accomodation.Model.FavoriteAccommodationRequest;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +33,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Main_Accommodations_App extends AppCompatActivity {
+public class Main_Accommodations_App extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recLoveAccommodation;
     private RecyclerView recAccommodation;
     private AccommodationAdapter adapter1;
     private AccommodationAdapter adapter2;
+
+    private DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    ActionBarDrawerToggle toggle;
+
     private SharedPreferences pref;
     private int userId;
 

@@ -50,10 +50,11 @@
                         app:srcCompat="@drawable/profile" />
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/tvUserName1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Guest"
+                        android:textAllCaps="true"
                         android:textColor="#ffffff"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -62,15 +63,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/tvUserEmail1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="guest@gmail.com"
                         android:textColor="#ffffff"
                         android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="@+id/textView13"
-                        app:layout_constraintStart_toStartOf="@+id/textView13"
-                        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                        app:layout_constraintEnd_toEndOf="@+id/tvUserName1"
+                        app:layout_constraintStart_toStartOf="@+id/tvUserName1"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserName1" />
 
                     <ImageView
                         android:id="@+id/imageView9"
@@ -85,18 +86,18 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
+                        android:layout_height="420dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="60dp"
                         android:layout_marginEnd="24dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/profile_white_background"
                         android:elevation="3dp"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView14">
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserEmail1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -231,7 +232,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView20"
+                                android:id="@+id/tvPassword"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -240,7 +241,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/textView21"
+                                android:id="@+id/tvChangePass"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -275,15 +276,16 @@
                                 android:textColor="#182693"
                                 android:textSize="18sp" />
 
-                            <TextView
-                                android:id="@+id/textView18"
+                            <EditText
+                                android:id="@+id/tvUserPhone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="1234-123-123"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:background="@null" />
                         </LinearLayout>
 
                         <View
@@ -307,28 +309,67 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Address:"
+                                android:text="Email:"
                                 android:textColor="#182693"
                                 android:textSize="18sp" />
 
-                            <TextView
-                                android:id="@+id/textView24"
+                            <EditText
+                                android:id="@+id/tvUserEmail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Co Nhue, Ha Noi"
+                                android:text="dat@gmail.com"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:background="@null"/>
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/view_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="#D9D9D9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView26"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Name:"
+                                android:textColor="#182693"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/tvUserName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Guest"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#5B5B5B"
+                                android:textSize="16sp"
+                                android:background="@null"/>
                         </LinearLayout>
 
                     </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnEditProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"

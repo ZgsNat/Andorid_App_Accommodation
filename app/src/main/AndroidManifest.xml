@@ -23,11 +23,9 @@
         android:theme="@style/Theme.ProjectPrm392_booking_Accomodation"
         tools:targetApi="31">
         <activity
-            android:name=".DetailedOwnerAccommodation"
-            android:exported="false" />
-        <activity
-            android:name=".OwnerCRUDAccommodationMain"
-            android:exported="false" />
+            android:name=".ChangeUserPassword"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".UserProfile"
             android:exported="false"
