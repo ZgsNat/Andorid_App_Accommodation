@@ -69,6 +69,8 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(Login.this, Main_Accommodations_App.class);
+                            startActivityForResult(i, 200);
 
                             // get User info from api
                             try {
@@ -77,10 +79,12 @@ public class Login extends AppCompatActivity {
                                 String userId = jsonObject.getString("userId");
                                 String username = jsonObject.getString("username");
                                 String email = jsonObject.getString("email");
+                                String phone = jsonObject.getString("phone");
 
                                 editor.putString("userId", userId);
                                 editor.putString("username", username);
                                 editor.putString("email", email);
+                                editor.putString("phone", phone);
                                 editor.apply();
                             } catch (IOException | JSONException e) {
                                 e.printStackTrace();

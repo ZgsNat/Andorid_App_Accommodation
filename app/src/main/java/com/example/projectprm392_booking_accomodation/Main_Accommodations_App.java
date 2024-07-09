@@ -1,19 +1,27 @@
 package com.example.projectprm392_booking_accomodation;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectprm392_booking_accomodation.Adapter.AccommodationAdapter;
 import com.example.projectprm392_booking_accomodation.Model.Accommodation;
 import com.example.projectprm392_booking_accomodation.Model.FavoriteAccommodationRequest;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +30,39 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Main_Accommodations_App extends AppCompatActivity {
+public class Main_Accommodations_App extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recLoveAccommodation;
     private RecyclerView recAccommodation;
     private AccommodationAdapter adapter1;
     private AccommodationAdapter adapter2;
+
+    private DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    ActionBarDrawerToggle toggle;
 
 
     private void bindingView(){
         recLoveAccommodation = findViewById(R.id.recLoveAccommodation);
         recAccommodation = findViewById(R.id.recAccommodation);
         recLoveAccommodation.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        drawerLayout = findViewById(R.id.main);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void bindingAction(){
         getListAccommodation();
         getListFavorAccommodation();
+
+        navigationView.setNavigationItemSelectedListener(this);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
+                R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
@@ -160,5 +185,21 @@ public class Main_Accommodations_App extends AppCompatActivity {
         super.onResume();
         getListFavorAccommodation();
         getListAccommodation();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.nav_profile){
+            Toast.makeText(this, "Go to Profile", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, UserProfile.class);
+            startActivityForResult(i, 200);
+        }
+        if(id == R.id.nav_logout) {
+            Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
