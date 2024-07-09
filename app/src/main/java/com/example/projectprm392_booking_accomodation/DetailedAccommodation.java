@@ -64,7 +64,7 @@ public class DetailedAccommodation extends AppCompatActivity {
         recRoom = findViewById(R.id.recListRoom);
         recComment = findViewById(R.id.recListComment);
         imgBackground = findViewById(R.id.imgBackground);
-        txtTitle = findViewById(R.id.txtTitle);
+        txtTitle = findViewById(R.id.edtTitle);
         txtAvgStar = findViewById(R.id.txtAvgStar);
         txtAddress = findViewById(R.id.txtAddress);
         txtHostName = findViewById(R.id.txtHostName);
@@ -78,7 +78,7 @@ public class DetailedAccommodation extends AppCompatActivity {
         getAccommodation();
         getListRoom();
         getListComments();
-        showMapFragment();
+
         buttonSubmitComment.setOnClickListener(this::btnSubmitCommentClick);
         btnCall.setOnClickListener(this::handlePhoneCall);
     }
@@ -162,6 +162,7 @@ public class DetailedAccommodation extends AppCompatActivity {
             txtAddress.setText(accommodation.getAddress());
             txtHostName.setText(accommodation.getHostName());
             txtPhoneNumber.setText(accommodation.getOwner().getPhone());
+            showMapFragment();
         }
         if(roomList!=null){
             recRoom.setLayoutManager(new GridLayoutManager(this,2));

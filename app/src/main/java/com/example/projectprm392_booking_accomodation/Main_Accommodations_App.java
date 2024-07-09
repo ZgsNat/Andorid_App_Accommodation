@@ -174,7 +174,8 @@ public class Main_Accommodations_App extends AppCompatActivity {
                 Toast.makeText(Main_Accommodations_App.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }private void setupSearchFilter() {
+    }
+    private void setupSearchFilter() {
         edtAccommodationName.setThreshold(1); // Bắt đầu gợi ý sau 1 ký tự
         edtAccommodationName.setOnItemClickListener((parent, view, position, id) -> {
             String selectedAccommodation = (String) parent.getItemAtPosition(position);
@@ -184,6 +185,7 @@ public class Main_Accommodations_App extends AppCompatActivity {
         edtAccommodationName.addTextChangedListener(new android.text.TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                filterAccommodations(s.toString());
             }
 
             @Override
@@ -193,6 +195,10 @@ public class Main_Accommodations_App extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(android.text.Editable s) {
+                if (s.toString().isEmpty()) {
+                    getListAccommodation();
+                }
+                filterAccommodations(s.toString());
             }
         });
     }
