@@ -6,12 +6,29 @@ public class Comment {
     private int star;
     private int accommodationId;
     private int userId;
-    
+    private User user;
     public Comment(int commentId, String description, int star, int accommodationId) {
         this.commentId = commentId;
         this.description = description;
         this.star = star;
         this.accommodationId = accommodationId;
+    }
+
+    public Comment(int commentId, String description, int star, int accommodationId, int userId, User user) {
+        this.commentId = commentId;
+        this.description = description;
+        this.star = star;
+        this.accommodationId = accommodationId;
+        this.userId = userId;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Comment(int commentId, String description, int star, int accommodationId, int userId) {

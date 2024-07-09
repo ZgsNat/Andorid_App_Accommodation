@@ -36,6 +36,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         Comment comment = commentList.get(position);
         holder.txtDescription.setText(comment.getDescription());
         holder.ratingBar.setRating(comment.getStar());
+        holder.txtUserName.setText(comment.getUser().getName());
     }
 
     @Override
@@ -45,12 +46,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
         TextView txtDescription;
+        TextView txtUserName;
         RatingBar ratingBar;
 
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
             txtDescription = itemView.findViewById(R.id.txtDescription);
             ratingBar = itemView.findViewById(R.id.ratingBar);
+            txtUserName = itemView.findViewById(R.id.txtName);
         }
     }
 }

@@ -1,5 +1,11 @@
 package com.example.projectprm392_booking_accomodation;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -43,12 +53,18 @@ public class DetailedAccommodation extends AppCompatActivity {
     private EditText editTextComment;
     private RatingBar ratingBarComment;
     private Button buttonSubmitComment;
+    private Button btnCall;
+    private SharedPreferences pref;
+    private int userId;
 
     private void bindingView(){
+        pref = getSharedPreferences("user_info", MODE_PRIVATE);
+        userId = Integer.parseInt(pref.getString("userId","0"));
+
         recRoom = findViewById(R.id.recListRoom);
         recComment = findViewById(R.id.recListComment);
         imgBackground = findViewById(R.id.imgBackground);
-        txtTitle = findViewById(R.id.txtTitle);
+        txtTitle = findViewById(R.id.edtTitle);
         txtAvgStar = findViewById(R.id.txtAvgStar);
         txtAddress = findViewById(R.id.txtAddress);
         txtHostName = findViewById(R.id.txtHostName);
@@ -56,13 +72,15 @@ public class DetailedAccommodation extends AppCompatActivity {
         editTextComment = findViewById(R.id.edtComment);
         ratingBarComment = findViewById(R.id.ratingBarComment);
         buttonSubmitComment = findViewById(R.id.buttonSubmitComment);
+        btnCall = findViewById(R.id.btnCall);
     }
     private void bindingAction(){
         getAccommodation();
         getListRoom();
         getListComments();
-        showMapFragment();
+
         buttonSubmitComment.setOnClickListener(this::btnSubmitCommentClick);
+        btnCall.setOnClickListener(this::handlePhoneCall);
     }
 
     private void btnSubmitCommentClick(View view) {
@@ -77,7 +95,7 @@ public class DetailedAccommodation extends AppCompatActivity {
         comment.setDescription(commentText);
         comment.setStar((int) stars);
         comment.setAccommodationId(accommodationId);
-        comment.setUserId(1); //UserId
+        comment.setUserId(userId); //UserId
         Call<Void> call = ApiClient.getCommentApiEnpoint().addComment(comment);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -143,6 +161,8 @@ public class DetailedAccommodation extends AppCompatActivity {
             txtAvgStar.setText(formattedAverageStar);
             txtAddress.setText(accommodation.getAddress());
             txtHostName.setText(accommodation.getHostName());
+            txtPhoneNumber.setText(accommodation.getOwner().getPhone());
+            showMapFragment();
         }
         if(roomList!=null){
             recRoom.setLayoutManager(new GridLayoutManager(this,2));
@@ -208,5 +228,68 @@ public class DetailedAccommodation extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainerView, mapsFragment);
         transaction.commit();
+    }
+
+    //make a call
+    private static final int REQUEST_CALL_PERMISSION = 101;
+    private void handlePhoneCall(View view) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.CALL_PHONE)) {
+                // Show an explanation to the user
+                showRationale();
+            } else {
+                // No explanation needed, request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+            }
+        } else {
+            // Permission has already been granted
+            makePhoneCall();
+        }
+    }
+
+    private void showRationale() {
+        new AlertDialog.Builder(this)
+                .setTitle("Permission Needed")
+                .setMessage("This app needs the Call Phone permission to make phone calls. Please grant the permission.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(DetailedAccommodation.this,
+                                new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    private void makePhoneCall() {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + txtPhoneNumber.getText()));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CALL_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed with the phone call
+                makePhoneCall();
+            } else {
+                // Permission denied, show a message to the user
+                Toast.makeText(this, "Call permission denied. The app cannot make phone calls.", Toast.LENGTH_SHORT).show();
+                // Optionally, degrade gracefully by disabling call functionality
+            }
+        }
     }
 }
