@@ -11,6 +11,7 @@ public class Accommodation {
     private boolean isFavorite;
     private float longitude;
     private float latitude;
+    private Owner owner;
 
     public Accommodation(String name, double avgStar, String address, String imageUrl, boolean isFavorite) {
         this.name = name;
@@ -30,6 +31,27 @@ public class Accommodation {
         this.isFavorite = isFavorite;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public Accommodation(int accommodationId, String name, double averageStar, String address, String hostName, String image, boolean isFavorite, float longitude, float latitude, Owner owner) {
+        this.accommodationId = accommodationId;
+        this.name = name;
+        this.averageStar = averageStar;
+        this.address = address;
+        this.hostName = hostName;
+        this.image = image;
+        this.isFavorite = isFavorite;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.owner = owner;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public float getLatitude() {

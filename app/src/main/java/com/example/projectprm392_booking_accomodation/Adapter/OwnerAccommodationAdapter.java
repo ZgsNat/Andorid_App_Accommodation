@@ -1,6 +1,5 @@
 package com.example.projectprm392_booking_accomodation.Adapter;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,23 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.projectprm392_booking_accomodation.DetailedAccommodation;
+import com.example.projectprm392_booking_accomodation.DetailedOwnerAccommodation;
 import com.example.projectprm392_booking_accomodation.Interface.OnFavoriteClickListener;
 import com.example.projectprm392_booking_accomodation.Model.Accommodation;
 import com.example.projectprm392_booking_accomodation.R;
 
 import java.util.List;
 
-public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdapter.AccommodationViewHolder> {
+public class OwnerAccommodationAdapter extends RecyclerView.Adapter<OwnerAccommodationAdapter.OwnerAccommodationViewHolder> {
     private List<Accommodation> accommodationList;
     private Context context;
     private OnFavoriteClickListener onFavoriteClickListener;
 
-    public AccommodationAdapter(Context context, List<Accommodation> accommodationList) {
+    public OwnerAccommodationAdapter(Context context, List<Accommodation> accommodationList) {
         this.context = context;
         this.accommodationList = accommodationList;
     }
 
-    public AccommodationAdapter(Context context, List<Accommodation> accommodationList, OnFavoriteClickListener listener) {
+    public OwnerAccommodationAdapter(Context context, List<Accommodation> accommodationList, OnFavoriteClickListener listener) {
         this.context = context;
         this.accommodationList = accommodationList;
         this.onFavoriteClickListener = listener;
@@ -38,13 +38,13 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
 
     @NonNull
     @Override
-    public AccommodationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.accommodation_item, parent, false);
-        return new AccommodationViewHolder(view);
+    public OwnerAccommodationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_accommodation_item, parent, false);
+        return new OwnerAccommodationViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AccommodationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OwnerAccommodationViewHolder holder, int position) {
         Accommodation accommodation = accommodationList.get(position);
         holder.txtName.setText(accommodation.getTitle());
         String formattedAverageStar = String.format("%.1f", accommodation.getAverageStar());
@@ -63,7 +63,7 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
             holder.imgLike.setImageResource(R.drawable.baseline_thumb_up_off_alt); // Outline heart
         }
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetailedAccommodation.class);
+            Intent intent = new Intent(context, DetailedOwnerAccommodation.class);
             intent.putExtra("AccommodationId", accommodation.getAccommodationId());
             context.startActivity(intent);
         });
@@ -83,11 +83,11 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
         return accommodationList.size();
     }
 
-    public static class AccommodationViewHolder extends RecyclerView.ViewHolder {
+    public static class OwnerAccommodationViewHolder extends RecyclerView.ViewHolder {
         TextView txtName, txtAvgStar, txtAddress;
         ImageView imgBackground, imageViewStar, imageViewLocation, imgLike;
 
-        public AccommodationViewHolder(@NonNull View itemView) {
+        public OwnerAccommodationViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtName);
             txtAvgStar = itemView.findViewById(R.id.txtAvgStar);
